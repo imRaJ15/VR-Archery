@@ -4,9 +4,10 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Hole
-  - Ball
   - Hit
+  - DynamicArrow
+  - StaticArrow
+  - Arrow
   layers:
   - Default
   - TransparentFX
