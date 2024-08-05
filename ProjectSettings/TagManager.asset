@@ -5,9 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Hit
-  - DynamicArrow
-  - StaticArrow
+  - Target
   - Arrow
+  - White
+  - Black
+  - Red
+  - Yellow
   layers:
   - Default
   - TransparentFX

@@ -44,6 +44,7 @@ public class Bow : MonoBehaviour
         isArrowAttached = true;
         GameObject arrow = args.interactableObject.transform.gameObject;
         arrow.tag = "Arrow";
+        arrow.gameObject.name = "ShootArrow";
     }
 
     void OnArrowDisAttached(SelectExitEventArgs args)
