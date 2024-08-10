@@ -44,8 +44,7 @@ public class Target : MonoBehaviour
             { Instantiate(_pierchedArrowPrefab, other.gameObject.transform.position, Quaternion.identity); }
             else { Debug.LogWarning("Prefab is Not Assigned"); }
 
-            GameObject arrow = GameObject.Find("ShootArrow" +
-                "");
+            GameObject arrow = GameObject.Find("ShootArrow");
             if (arrow != null)
             { Destroy(arrow); }
             else { Debug.LogWarning("Arrow not found"); }

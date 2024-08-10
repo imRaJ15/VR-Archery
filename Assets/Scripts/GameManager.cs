@@ -4,7 +4,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] TMP_Text[] _scoreText;
-    [SerializeField] TMP_Text _totalScoreText;
+    [SerializeField] TMP_Text _totalScoreText, _endTotalScore;
+    [SerializeField] GameObject[] allGameObject;
+    [SerializeField] GameObject _endCanvas;
 
     private int yourScore;
     public bool hasScore;
@@ -20,11 +22,13 @@ public class GameManager : MonoBehaviour
         { _scoreText[i].text = ""; }
 
         _currentAttemptNo = 0;
+        _endCanvas.SetActive(false);
     }
 
     private void Update()
     {
         _totalScoreText.text = yourScore.ToString();
+        _endTotalScore.text = yourScore.ToString();
     }
 
     public void ScoringSystem(string areaHit)
@@ -90,6 +94,18 @@ public class GameManager : MonoBehaviour
             default:
                 Debug.LogWarning("Attempt Might be 0 or more than 6");
                 break;
+        }
+    }
+
+    private void EndGame()
+    {
+        if (_currentAttemptNo >= 6)
+        {
+            for (int i = 0; i < allGameObject.Length; i++)
+            {
+                allGameObject[i].gameObject.SetActive(false);   
+            }
+            _endCanvas.SetActive(true); 
         }
     }
 }

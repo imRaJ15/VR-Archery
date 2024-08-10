@@ -36,15 +36,18 @@ public class Bow : MonoBehaviour
 
     public void ShootArrow()
     {
-        XRGrabInteractable xRGrabInteractable = GameObject.FindGameObjectWithTag("Arrow").GetComponent<XRGrabInteractable>();
-        xRGrabInteractable.enabled = false;
+        if (isArrowAttached)
+        {
+            XRGrabInteractable xRGrabInteractable = GameObject.FindGameObjectWithTag("Arrow").GetComponent<XRGrabInteractable>();
+            xRGrabInteractable.enabled = false;
 
-        Arrow arrow = GameObject.FindGameObjectWithTag("Arrow").GetComponent<Arrow>();
-        arrow.enabled = true;
+            Arrow arrow = GameObject.FindGameObjectWithTag("Arrow").GetComponent<Arrow>();
+            arrow.enabled = true;
 
-        GameObject arrowGM = GameObject.FindGameObjectWithTag("Arrow");
-        arrowGM.tag = "Untagged";
+            GameObject arrowGM = GameObject.FindGameObjectWithTag("Arrow");
+            arrowGM.tag = "Untagged";
 
-        _audioSource.Play();
+            _audioSource.Play();
+        }
     }
 }
