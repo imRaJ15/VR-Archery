@@ -15,6 +15,6 @@ public class Arrow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        arrowRB.AddForce(transform.forward * -0.025f, ForceMode.Impulse);
+        arrowRB.AddForce(transform.forward * -0.04f, ForceMode.Impulse);
     }
 }

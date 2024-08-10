@@ -7,8 +7,8 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class Bow : MonoBehaviour
 {
     [SerializeField] XRSocketInteractor _arrowSocket;
-    [SerializeField] GameObject _dynamicArrow;
     [SerializeField] Vector3 _offset;
+    [SerializeField] AudioSource _audioSource;
 
     public bool isArrowAttached;
 
@@ -23,22 +23,6 @@ public class Bow : MonoBehaviour
         _arrowSocket.selectExited.AddListener(OnArrowDisAttached);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && isArrowAttached) 
-        {
-            XRGrabInteractable xRGrabInteractable = GameObject.FindGameObjectWithTag("Arrow").GetComponent<XRGrabInteractable>();
-            xRGrabInteractable.enabled = false;
-
-            Arrow arrow = GameObject.FindGameObjectWithTag("Arrow").GetComponent<Arrow>();
-            arrow.enabled = true;
-
-            GameObject arrowGM = GameObject.FindGameObjectWithTag("Arrow");
-            arrowGM.tag = "Untagged";
-        }
-    }
-
     void OnArrowAttached(SelectEnterEventArgs args)
     {
         isArrowAttached = true;
@@ -49,4 +33,18 @@ public class Bow : MonoBehaviour
 
     void OnArrowDisAttached(SelectExitEventArgs args)
     { isArrowAttached = false; }
+
+    public void ShootArrow()
+    {
+        XRGrabInteractable xRGrabInteractable = GameObject.FindGameObjectWithTag("Arrow").GetComponent<XRGrabInteractable>();
+        xRGrabInteractable.enabled = false;
+
+        Arrow arrow = GameObject.FindGameObjectWithTag("Arrow").GetComponent<Arrow>();
+        arrow.enabled = true;
+
+        GameObject arrowGM = GameObject.FindGameObjectWithTag("Arrow");
+        arrowGM.tag = "Untagged";
+
+        _audioSource.Play();
+    }
 }
