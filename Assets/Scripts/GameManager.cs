@@ -9,19 +9,22 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject _endCanvas;
 
     private int yourScore;
-    public bool hasScore;
-    public int _currentAttemptNo;
+    public bool HasScore { get; private set; }
+    public void SetHasScore(bool value)
+    { HasScore = value; }
+
+    public int CurrentAttemptNo { get; private set; }
 
     // Start is called before the first frame update
     void Start()
     {
-        hasScore = false;
+        HasScore = false;
         yourScore = 0;
 
         for (int i = 0;  i < _scoreText.Length; i++)
         { _scoreText[i].text = ""; }
 
-        _currentAttemptNo = 0;
+        CurrentAttemptNo = 0;
         _endCanvas.SetActive(false);
     }
 
@@ -69,7 +72,7 @@ public class GameManager : MonoBehaviour
 
     private void AddScoreText(int currentScore)
     {
-        switch (_currentAttemptNo)
+        switch (CurrentAttemptNo)
         {
             case 1:
                 _scoreText[0].text = currentScore.ToString();
@@ -99,7 +102,7 @@ public class GameManager : MonoBehaviour
 
     private void EndGame()
     {
-        if (_currentAttemptNo >= 6)
+        if (CurrentAttemptNo >= 6)
         {
             for (int i = 0; i < allGameObject.Length; i++)
             {
@@ -108,4 +111,7 @@ public class GameManager : MonoBehaviour
             _endCanvas.SetActive(true); 
         }
     }
+
+    public void IncrementAttempt()
+    { CurrentAttemptNo++; }
 }

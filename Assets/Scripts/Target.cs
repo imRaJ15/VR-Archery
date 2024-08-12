@@ -31,11 +31,11 @@ public class Target : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Hit") && !_gm.hasScore)
+        if (other.gameObject.CompareTag("Hit") && !_gm.HasScore)
         {
-            _gm._currentAttemptNo++;
+            _gm.IncrementAttempt();
 
-            _gm.hasScore = true;
+            _gm.SetHasScore(true);
             StartCoroutine(TakeAnotherShotRoutine());
 
             _gm.ScoringSystem(gameObject.tag);
@@ -57,6 +57,6 @@ public class Target : MonoBehaviour
     IEnumerator TakeAnotherShotRoutine()
     {
         yield return new WaitForSeconds(3.0f);
-        _gm.hasScore = false;
+        _gm.SetHasScore(false); ;
     }
 }
